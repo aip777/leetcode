@@ -28,7 +28,6 @@ class Solution(object):
             if i not in _dict:
                 _dict[i] = 1
             elif i == start:
-                _dict.clear()
                 _dict[i] = 1
             start = i
         return len(_dict)
@@ -38,9 +37,18 @@ s = "pwwkew"
 result = Solution().lengthOfLongestSubstring(s)
 print(result)
 
-
-
-
+#Right answer
+class Solution(object):
+    def length_of_longest_substring(s):
+        _dict = {}
+        left = 0
+        max_len = 0
+        for right, char in enumerate(s):
+            if char in _dict and _dict[char] >= left:
+                left = _dict[char] + 1
+            _dict[char] = right
+            max_len = max(max_len, right - left + 1)
+        return max_len
 
 
 
